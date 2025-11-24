@@ -1,0 +1,25 @@
+>> %Perkalian diperoleh dengan menggunakan fungsi conv()
+>> % contoh   p(s)=(3s^2+2s+1)(s+4) --- p(s)= 3s^3 + 14s^2 + 9s + 4
+>> p=[3 2 1]
+
+p =
+
+     3     2     1
+
+>> q=[1 4]
+
+q =
+
+     1     4
+
+>> n=conv(p,q)
+
+n =
+
+     3    14     9     4
+
+>> p_val=polyval(n,-5)
+
+p_val =
+
+   -66
