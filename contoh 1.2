@@ -1,0 +1,31 @@
+>> %mengubah polynomial simbolik menjadi matriks polynomial
+>> syms t
+>> sym=t^3+2*t+6;
+>> poly=sym2poly(sym)
+
+poly =
+
+     1     0     2     6
+
+>> % mengubah polynomial matriks ke simbolik
+>> symagain=poly2sym(poly)
+
+ 
+symagain =
+ 
+x^3 + 2*x + 6
+ 
+>> 
+>> r=roots(poly)
+
+r =
+
+   0.7281 + 1.8948i
+   0.7281 - 1.8948i
+  -1.4562 + 0.0000i
+
+>> coeff=coeffs(symagain)
+ 
+coeff =
+ 
+[6, 2, 1]
