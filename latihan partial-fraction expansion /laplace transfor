@@ -1,0 +1,96 @@
+>> % NO 1
+>> num= [5 7 8 30];
+>> den= [1 15 62 85 25];
+>> % gunakan fungsi residue untuk ekspansi partial fraction
+>> [c,p,k] = residue(num,den);
+>> 
+>> 
+>> [c,p,k] = residue(num,den)
+
+c =
+
+    8.9278
+   -4.6370
+    0.0578
+    0.6514
+
+
+p =
+
+   -9.2690
+   -3.2633
+   -2.0680
+   -0.3997
+
+
+k =
+
+     []
+>> % NOMOR 2
+syms u t
+% (a)
+fta= u*(t+9);
+>> ftb= exp(5*t);
+ftc= (5*t+7);
+ftd= 5*u*(t)+8*exp(7*t)-12*exp(-8*t);
+fte= exp(-t)+9*t^3-7*t^-2+8;
+>> ftf= 7*t^4+5*t^2-exp(-7*t);
+>> ftg= 9*u*t+5*exp(-3*t);
+>> flapa = laplace (fta)
+ 
+flapa =
+ 
+(u*(9*s + 1))/s^2
+ 
+>> flapb = laplace (ftb)
+ 
+flapb =
+ 
+1/(s - 5)
+ 
+>> flapc = laplace (ftc)
+ 
+flapc =
+ 
+(5*((7*s)/5 + 1))/s^2
+ 
+>> flapd = laplace (ftd)
+ 
+flapd =
+ 
+8/(s - 7) - 12/(s + 8) + (5*u)/s^2
+ 
+>> flape = laplace (fte)
+ 
+flape =
+ 
+1/(s + 1) + 8/s + 54/s^4 - 7*laplace(1/t^2, t, s)
+ 
+>> flapf = laplace (ftf)
+ 
+flapf =
+ 
+10/s^3 - 1/(s + 7) + 168/s^5
+ 
+>> flapg = laplace (ftg)
+ 
+flapg =
+ 
+5/(s + 3) + (9*u)/s^2
+NOMOR 3.
+>> %MENGUBAH BENTUKA TRANSFORMASI LAPLACE MENJADI INVERS
+>> % STEP 1
+>> syms s t
+>> % step 2 tuliskan dalam bentuk laplace
+>> Fs= 7/(s^2+5*s+6)
+ 
+Fs =
+ 
+7/(s^2 + 5*s + 6)
+ 
+>> %step 3 gunakan command ilaplace
+>> ft=ilaplace(Fs)
+ 
+ft =
+ 
+7*exp(-2*t) - 7*exp(-3*t
