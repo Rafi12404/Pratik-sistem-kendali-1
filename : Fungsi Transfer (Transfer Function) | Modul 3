@@ -1,0 +1,356 @@
+(JAWABAN NO 1)
+>> % 3.1
+>> num =[1 1]
+
+num =
+
+     1     1
+
+>> den = [1 3 1]
+
+den =
+
+     1     3     1
+
+>> sys = tf(num,den) % Membuat fungsi transfer
+sys_zpk = zpk(sys) % Mengubah ke model zpk
+
+sys =
+ 
+      s + 1
+  -------------
+  s^2 + 3 s + 1
+ 
+Continuous-time transfer function.
+Model Properties
+
+sys_zpk =
+ 
+         (s+1)
+  -------------------
+  (s+2.618) (s+0.382)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> 
+>> 
+>> % 3.2
+>> z = -2;
+p = [-1 -1 -3];
+k = 1;
+sys = zpk(z,p,k) % membuat model zpk
+
+sys =
+ 
+      (s+2)
+  -------------
+  (s+1)^2 (s+3)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> sys_tf = tf(sys) % mengubah ke model fungsi transfer
+
+sys_tf =
+ 
+          s + 2
+  ---------------------
+  s^3 + 5 s^2 + 7 s + 3
+ 
+Continuous-time transfer function.
+Model Properties
+>> 
+>> 
+>> %3.3
+>> % menetapkan variabel s, sebagai variabel dari fungsi transfer
+s = tf('s');
+sys = (s+1)/(s^2+2*s+1)
+
+sys =
+ 
+      s + 1
+  -------------
+  s^2 + 2 s + 1
+ 
+Continuous-time transfer function.
+Model Properties
+>> % Mengembalikan fungsi transfer dalam bentuk terfaktor
+s = zpk('s');
+sys = (s+1)/(s^2+2*s+1)
+
+sys =
+ 
+   (s+1)
+  -------
+  (s+1)^2
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> 
+>> 
+>> %3.4
+>> % Menetapkan variabel s, sebagai variabel dari fungsi transfer
+s = zpk('s');
+sys = ((s+2)*(s-1))/(((s+3)^2)*(s-5))
+
+sys =
+ 
+   (s+2) (s-1)
+  -------------
+  (s+3)^2 (s-5)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> % Mengembalikan fungsi transfer dalam bentuk polinomial
+s = tf('s');
+sys = ((s+2)*(s-1))/(((s+3)^2)*(s-5))
+
+sys =
+ 
+       s^2 + s - 2
+  ---------------------
+  s^3 + s^2 - 21 s - 45
+ 
+Continuous-time transfer function.
+Model Properties
+
+
+
+
+(JAWABAN NO 2)
+>> Gpzk = zpk([-15 -266 -72], [0 -55 roots([1 5 30])' roots([1 27 52])'], 5)
+
+Gpzk =
+ 
+            5 (s+15) (s+72) (s+266)
+  --------------------------------------------
+  s (s+55) (s+24.91) (s+2.087) (s^2 + 5s + 30)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> Gp = tf(Gzpk)
+
+Gp =
+ 
+      s^4 + 25 s^3 + 20 s^2 + 15 s + 42
+  -----------------------------------------
+  s^5 + 13 s^4 + 9 s^3 + 37 s^2 + 35 s + 50
+ 
+Continuous-time transfer function.
+Model Properties
+
+
+
+
+
+
+(JAWABAN NO 3)
+>> % soal no 3
+>> % Tunjukkan hasil rasio terfaktor dan rasio polynomial berdasarkan program MATLAB
+>> 'polynomial'
+Gtf = tf([1 25 20 15 42], [1 13 9 37 35 50])
+'Factored'
+Gzpk = zpk(Gtf)
+
+ans =
+
+    'polynomial'
+
+
+Gtf =
+ 
+      s^4 + 25 s^3 + 20 s^2 + 15 s + 42
+  -----------------------------------------
+  s^5 + 13 s^4 + 9 s^3 + 37 s^2 + 35 s + 50
+ 
+Continuous-time transfer function.
+Model Properties
+
+ans =
+
+    'Factored'
+
+
+Gzpk =
+ 
+        (s+24.2) (s+1.35) (s^2 - 0.5462s + 1.286)
+  ------------------------------------------------------
+  (s+12.5) (s^2 + 1.463s + 1.493) (s^2 - 0.964s + 2.679)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+
+
+
+
+(JAWABAN NO 4)
+>> numg=[-5 -70];
+>> deng=[0 -45 -55 (roots([1 7 110]))' (roots([1 6 95]))'];
+>> [numg,deng]=zp2tf(numg',deng',10^4);
+>> Gtf=tf (numg,deng)
+G=zpk (Gtf)
+[z,p,k]=residue(numg,deng)
+
+Gtf =
+ 
+                          10000 s^2 + 750000 s + 3.5e06
+  -----------------------------------------------------------------------------
+  s^7 + 113 s^6 + 4022 s^5 + 58200 s^4 + 754275 s^3 + 4.324e06 s^2 + 2.586e07 s
+ 
+Continuous-time transfer function.
+Model Properties
+
+G =
+ 
+                 10000 (s+70) (s+5)
+  ------------------------------------------------
+  s (s+55) (s+45) (s^2 + 6s + 95) (s^2 + 7s + 110)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+
+z =
+
+  -0.0018 + 0.0000i
+   0.0066 + 0.0000i
+   0.9513 + 0.0896i
+   0.9513 - 0.0896i
+  -1.0213 - 0.1349i
+  -1.0213 + 0.1349i
+   0.1353 + 0.0000i
+
+
+p =
+
+ -55.0000 + 0.0000i
+ -45.0000 + 0.0000i
+  -3.5000 + 9.8869i
+  -3.5000 - 9.8869i
+  -3.0000 + 9.2736i
+  -3.0000 - 9.2736i
+   0.0000 + 0.0000i
+
+
+k =
+
+(JAWABAN NO 5)
+>> % soal nomor 5
+syms s
+' (a) '
+Ga=45*[(s^2+37*s+74)*(s^3+28*s^2+32*s+16)]/[(s+39)*(s+47)*(s^2+2*s+100)*(s^3+27*s^2+18*s+15)];
+'Ga symbolic'
+pretty (Ga)
+[numga,denga] = numden (Ga) ;
+numga=sym2poly(numga);
+denga=sym2poly(denga);
+'Ga polynimial'
+Ga=tf (numga,denga)
+'Ga factored'
+Ga=zpk (Ga)
+
+ans =
+
+    ' (a) '
+
+
+ans =
+
+    'Ga symbolic'
+
+          2                3       2
+        (s  + 37 s + 74) (s  + 28 s  + 32 s + 16) 45
+-----------------------------------------------------------
+                    2                3       2
+(s + 39) (s + 47) (s  + 2 s + 100) (s  + 27 s  + 18 s + 15)
+
+
+ans =
+
+    'Ga polynimial'
+
+
+Ga =
+ 
+               45 s^5 + 2925 s^4 + 51390 s^3 + 147240 s^2 + 133200 s + 53280
+  ---------------------------------------------------------------------------------------
+  s^7 + 115 s^6 + 4499 s^5 + 70700 s^4 + 553692 s^3 + 5.201e06 s^2 + 3.483e06 s + 2.75e06
+ 
+Continuous-time transfer function.
+Model Properties
+
+ans =
+
+    'Ga factored'
+
+
+Ga =
+ 
+       45 (s+34.88) (s+26.83) (s+2.122) (s^2 + 1.17s + 0.5964)
+  -----------------------------------------------------------------
+  (s+47) (s+39) (s+26.34) (s^2 + 0.6618s + 0.5695) (s^2 + 2s + 100)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+>> % soal nomor 5
+syms s
+' (a) '
+Ga=56*[(s+14)*(s^3+49*s^2+62*s+53)]/[(s^3+81*s^2+76*s+65)*(s^2+88*s+33)*(s^2+56*s+77)]
+'Ga symbolic'
+pretty (Ga)
+[numga,denga] = numden (Ga) ;
+numga=sym2poly(numga);
+denga=sym2poly(denga);
+'Ga polynimial'
+Ga=tf (numga,denga)
+'Ga factored'
+Ga=zpk (Ga)
+
+ans =
+
+    ' (a) '
+
+ 
+Ga =
+ 
+(56*(s + 14)*(s^3 + 49*s^2 + 62*s + 53))/((s^2 + 88*s + 33)*(s^2 + 56*s + 77)*(s^3 + 81*s^2 + 76*s + 65))
+ 
+
+ans =
+
+    'Ga symbolic'
+
+                      3       2
+           (s + 14) (s  + 49 s  + 62 s + 53) 56
+----------------------------------------------------------
+  2                2                3       2
+(s  + 88 s + 33) (s  + 56 s + 77) (s  + 81 s  + 76 s + 65)
+
+
+ans =
+
+    'Ga polynimial'
+
+
+Ga =
+ 
+                      56 s^4 + 3528 s^3 + 41888 s^2 + 51576 s + 41552
+  ----------------------------------------------------------------------------------------
+  s^7 + 225 s^6 + 16778 s^5 + 427711 s^4 + 1.093e06 s^3 + 1.189e06 s^2 + 753676 s + 165165
+ 
+Continuous-time transfer function.
+Model Properties
+
+ans =
+
+    'Ga factored'
+
+
+Ga =
+ 
+                  56 (s+47.72) (s+14) (s^2 + 1.276s + 1.111)
+  ---------------------------------------------------------------------------
+  (s+87.62) (s+80.06) (s+54.59) (s+1.411) (s+0.3766) (s^2 + 0.9391s + 0.8119)
+ 
+Continuous-time zero/pole/gain model.
+
+     []
+(JAWABAN NO 3)
